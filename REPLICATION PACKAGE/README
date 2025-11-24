@@ -1,1 +1,39 @@
+Replication Package 
+All Forecasters Are Not the Same: Systematic Patterns in Predictive Performance
+Robert Rich and Joseph Tracy
+Overview and Contents
+This replication package was assembled in January of 2025. The code in this repository generates the 13 figures and content of the 3 tables for the paper “All Forecasters Are Not the Same: Systematic Patterns in Predictive Performance”. It also generates the 2 figures and content of the 5 tables in the appendix to this paper. The main contents of the repository are the following:
+Code/: folder of scripts to prepare and clean data as well as generate tables and figures.
+Functions/: folder of subroutines for use with MATLAB scripts.
+Data/: data folder.
+Raw/: ECB SPF forecast data, realizations of target variables, and start and end bins for density forecasts.
+Intermediate/: Data used at intermediate steps in the cleaning process. These datasets are generated with x01_Raw_Data_Shell.do, x02a_Individual_Uncertainty_GDP.do, x02b_Individual_Uncertainty_HICP.do, x02c_Individual_Uncertainty_Urate.do, x03_Pull_Data.do, x04_Data_Clean_And_Merge, and x05_Drop_Low_Counts.do in the Code/ folder.
+Ready/: Data used to conduct regressions, statistical tests, and generate figures.
+Output/: folder of results.
+Figures/: .jpg files for each figure used in the paper and its appendix.
+HL Results/: Results from applying the Hounyo and Lahiri (2023) testing procedure for equal predictive performance to ECB SPF forecast data. This folder contains the material for Tables 1A-4A.
+Regressions/: Regression results, as well as material for Tables 3 and 5A.
+Simulations/: Results from simulation exercise as well as the datasets used to create Figures 9-12.
+Statistical Tests/: Results displayed in Tables 1 and 2.
+The repository also contains the manuscript, appendix, and this read-me file.
+
+Instructions and Computational Requirements
+All file paths are relative to the root of the replication package. The scripts are run in Stata, Python, MATLAB, and R. Roughly, Stata is used to import and clean data, Python is used to construct the density forecast performance measures, MATLAB is used to conduct the statistical tests presented in Tables 1 and 2 (as well as the Hounyo and Lahiri (2023) testing procedure), and R is used to produce the paper’s figures. The filenames of the scripts are ordered in the sequence in which they should be executed. However, x00a_Main.do, x00b_Main.R, and x00c_Main.m run everything in batch, so these are the main executables (x00a_Main.do runs the Python scripts). Start with x00a_Main.do, then run x00b_Main.R, and finish with x00c_Main.m. These main scripts give short descriptions of the other scripts they execute as well as any file paths in these scripts that need to be changed. Please set your working directories and file paths accordingly. Every script also contains a short description of its role at the top of its respective file, including any information pertaining to the generation of a figure or table.
+These analyses were conducted on Stata/MP 17.0, Python 3.10, MATLAB 9.13 (R2022b), and R 4.4.0 using the RStudio 2024.04.0 “Chocolate Cosmos” Release. We explicitly use the following packages in the analysis files:
+Stata/MP 17.0: estout, ivreg2, asdoc (2.3.9.5), and sxpose.
+Python 3.10: openpyxl (3.1.5), pandas (2.2.3), collections, math, numpy (2.1.3), and time.
+MATLAB 9.13: Econometrics Toolbox (6.1), Statistics and Machine Learning Toolbox (12.4), and Optimization Toolbox (9.4).
+R 4.4.0: ggplot2 (3.5.1), readxl (1.4.3), tidyr (1.3.1), tidyverse (2.0.0), writexl (1.5.1), stringr (1.5.1), NLP (0.3.2), ggpubr (0.6.0), reshape2 (1.4.4), patchwork (1.2.0), and haven (2.5.4).
+The scripts were executed on an HP Elite Mini 800 G9 Desktop PC with a 12th Gen Intel(R) Core(TM) i7-1255U processor and 32GB of RAM. With this equipment, the scripts take, in total, about 20 minutes to execute.
+Data Availability and Provenance
+All of the data used in this paper are public and freely accessible online. The raw data is mostly collected in the Raw/ folder in .csv or .xls(x) files that can be viewed with Microsoft Excel (with one exception noted below).
+ECB SPF Forecasts
+Files in Raw/ with the xxxxQx.csv pattern contain quarterly ECB SPF forecast data. These forecaster-level microdata contain point and density forecasts for inflation, GDP, and unemployment indicators at year-ahead (“Aroll”) and one-year-one-year-forward (“Broll”) horizons in a panel format. To access these data online, see https://www.ecb.europa.eu/stats/ecb_surveys/survey_of_professional_forecasters/html/all_data.en.html. The “summary_of_bin_start_and_end_points” spreadsheets contain manually compiled information about the bin structure of the density forecasts and are used in the Python programs to generate the density forecast performance measures. Information on the bin structure of ECB SPF forecasts is available at https://www.ecb.europa.eu/stats/prices/indic/forecast/shared/files/SPF_dataset_description.pdf.
+Realizations
+The “realizations” spreadsheet in the Raw/ folder is manually compiled real-time data with a separate sheet on each of the three indicators studied in this paper. These data are available online at
+GDP: https://sdw.ecb.europa.eu/quickview.do?SERIES_KEY=194.RTD.Q.S0.S.G_GDPM_TO_C.E
+Inflation: https://sdw.ecb.europa.eu/quickview.do?SERIES_KEY=194.RTD.M.S0.N.P_C_OV.X
+Unemployment: https://sdw.ecb.europa.eu/quickview.do?SERIES_KEY=194.RTD.M.S0.S.L_UNETO.F
+Euro Area Recession Dates
+Figures 2 and 3 use Euro Area recession dates. These dates are taken from https://eabcn.org/dbc/peaksandtroughs/chronology-euro-area-business-cycles and were manually compiled in the euro_area_recession_dates.dta file in the Ready/ folder.
 
